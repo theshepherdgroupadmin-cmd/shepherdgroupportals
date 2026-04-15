@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open House Sign-In — The Shepherd Group</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0d1b2a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #111;
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #111;
+    }
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .brand span { font-size: 11px; color: #c9a84c; letter-spacing: 3px; margin-left: 8px; }
+    .end-btn {
+      background: transparent;
+      border: 1.5px solid #555;
+      color: #aaa;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .end-btn:hover { border-color: #b71c1c; color: #b71c1c; }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 44px;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .card-title {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      color: #111;
+      margin-bottom: 4px;
+    }
+    .card-sub {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 28px;
+    }
+    .address-display {
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #333;
+      margin-bottom: 24px;
+      display: none;
+    }
+    .setup-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .setup-row input {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 6px;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .setup-row input:focus { border-color: #0d1b2a; }
+    .start-oh-btn {
+      background: #0d1b2a;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .field { margin-bottom: 16px; }
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 6px;
+    }
+    input[type=text], input[type=email], input[type=tel] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 6px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus {
+      border-color: #0d1b2a;
+    }
+    .submit-btn {
+      width: 100%;
+      background: #0d1b2a;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #1a2e42; }
+    .submit-btn:disabled { background: #999; cursor: not-allowed; }
+    .success {
+      text-align: center;
+      padding: 20px 0;
+      display: none;
+    }
+    .success-check {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .success-name {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #111;
+      margin-bottom: 6px;
+    }
+    .success-sub {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 20px;
+    }
+    .next-btn {
+      background: #0d1b2a;
+      color: #fff;
+      border: none;
+      padding: 12px 32px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .error-msg {
+      color: #b71c1c;
+      font-size: 12px;
+      margin-top: 8px;
+      display: none;
+    }
+    #guest-count {
+      font-size: 12px;
+      color: #bbb;
+      text-align: right;
+      margin-top: 16px;
+    }
+    /* Setup screen */
+    #setup-screen { display: block; }
+    #signin-screen { display: none; }
+    #success-screen { display: none; }
+    #ended-screen { display: none; text-align: center; padding: 20px 0; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <span class="brand">Shepherd<span>GROUP</span></span>
+  </div>
+  <button class="end-btn" onclick="endOpenHouse()">End Open House</button>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- Setup screen: agent enters property + date -->
+    <div id="setup-screen">
+      <div class="card-title">Open House Sign-In</div>
+      <div class="card-sub">Enter the property address to begin.</div>
+      <div class="setup-row">
+        <input type="text" id="setup-address" placeholder="Property address (e.g. 123 Main St)"/>
+        <button class="start-oh-btn" onclick="startOpenHouse()">Start</button>
+      </div>
+      <input type="date" id="setup-date" style="width:100%;padding:10px 12px;border:1.5px solid #e5e5e5;border-radius:6px;font-size:13px;outline:none;"/>
+    </div>
+
+    <!-- Sign-in screen: guest entry -->
+    <div id="signin-screen">
+      <div class="address-display" id="address-display"></div>
+      <div class="card-title">Welcome!</div>
+      <div class="card-sub">Please sign in below.</div>
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" id="firstName" autocomplete="given-name"/>
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" id="lastName" autocomplete="family-name"/>
+      </div>
+      <div class="field">
+        <label>Phone</label>
+        <input type="tel" id="phone" autocomplete="tel"/>
+      </div>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" id="email" autocomplete="email"/>
+      </div>
+      <div class="error-msg" id="error-msg">Please enter at least a first name and phone or email.</div>
+      <button class="submit-btn" id="submit-btn" onclick="submitGuest()">Sign In</button>
+      <div id="guest-count"></div>
+    </div>
+
+    <!-- Success screen -->
+    <div id="success-screen">
+      <div class="success">
+        <div class="success-check">&#10003;</div>
+        <div class="success-name" id="success-name">Thank you!</div>
+        <div class="success-sub">You're all signed in. Enjoy the open house!</div>
+        <button class="next-btn" onclick="nextGuest()">Next Guest</button>
+      </div>
+    </div>
+
+    <!-- Ended screen -->
+    <div id="ended-screen">
+      <div class="success-check">&#127968;</div>
+      <div class="success-name">Open House Complete</div>
+      <div class="success-sub" style="margin-top:8px;">
+        Your guest list is being sent to<br><strong>ryan@stonehouserealtyco.com</strong>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+  var FORM_ID  = "261003690363046";
+  var API_KEY  = "522458869b59e22693912180a90c79f0";
+  var AGENT    = "Ryan Stonehouse";
+  var property = "";
+  var ohDate   = "";
+  var guestCount = 0;
+  var guests   = [];
+
+  // Set today as default date
+  document.getElementById("setup-date").valueAsDate = new Date();
+
+  function startOpenHouse() {
+    property = document.getElementById("setup-address").value.trim();
+    ohDate   = document.getElementById("setup-date").value;
+    if (!property) {
+      document.getElementById("setup-address").style.borderColor = "#b71c1c";
+      return;
+    }
+    document.getElementById("address-display").textContent = property + (ohDate ? "  \u00b7  " + ohDate : "");
+    document.getElementById("address-display").style.display = "block";
+    document.getElementById("setup-screen").style.display = "none";
+    document.getElementById("signin-screen").style.display = "block";
+    document.getElementById("firstName").focus();
+  }
+
+  function submitGuest() {
+    var fn    = document.getElementById("firstName").value.trim();
+    var ln    = document.getElementById("lastName").value.trim();
+    var phone = document.getElementById("phone").value.trim();
+    var email = document.getElementById("email").value.trim();
+    var err   = document.getElementById("error-msg");
+
+    if (!fn || (!phone && !email)) {
+      err.style.display = "block";
+      return;
+    }
+    err.style.display = "none";
+
+    var btn = document.getElementById("submit-btn");
+    btn.disabled = true;
+    btn.textContent = "Signing in\u2026";
+
+    // Submit to Jotform
+    var url = "https://api.jotform.com/form/" + FORM_ID + "/submissions?apiKey=" + API_KEY;
+    var body = new URLSearchParams({
+      "submission[2]": fn,
+      "submission[3]": ln,
+      "submission[4]": phone,
+      "submission[5]": email,
+      "submission[6]": AGENT,
+      "submission[7]": property,
+      "submission[8]": ohDate
+    });
+
+    fetch(url, { method: "POST", body: body })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        guestCount++;
+        guests.push({ name: fn + " " + ln, phone: phone, email: email });
+        document.getElementById("success-name").textContent = "Thank you, " + fn + "!";
+        document.getElementById("signin-screen").style.display = "none";
+        document.getElementById("success-screen").style.display = "block";
+      })
+      .catch(function() {
+        // Still show success — don't block guest on API errors
+        guestCount++;
+        document.getElementById("success-name").textContent = "Thank you, " + fn + "!";
+        document.getElementById("signin-screen").style.display = "none";
+        document.getElementById("success-screen").style.display = "block";
+      });
+  }
+
+  function nextGuest() {
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value  = "";
+    document.getElementById("phone").value     = "";
+    document.getElementById("email").value     = "";
+    document.getElementById("success-screen").style.display = "none";
+    document.getElementById("signin-screen").style.display  = "block";
+    document.getElementById("guest-count").textContent = guestCount + " guest" + (guestCount !== 1 ? "s" : "") + " signed in";
+    document.getElementById("submit-btn").disabled = false;
+    document.getElementById("submit-btn").textContent = "Sign In";
+    document.getElementById("firstName").focus();
+  }
+
+  function endOpenHouse() {
+    if (!property) { alert("Open house hasn\'t started yet."); return; }
+    if (!confirm("End the open house? Your guest list will be emailed to you.")) return;
+    document.getElementById("signin-screen").style.display  = "none";
+    document.getElementById("success-screen").style.display = "none";
+    document.getElementById("ended-screen").style.display   = "block";
+
+    // Submit end-session marker to Jotform
+    var url  = "https://api.jotform.com/form/" + FORM_ID + "/submissions?apiKey=" + API_KEY;
+    var body = new URLSearchParams({
+      "submission[2]": "END_SESSION",
+      "submission[3]": guestCount + " guests",
+      "submission[6]": AGENT,
+      "submission[7]": property,
+      "submission[8]": ohDate
+    });
+    fetch(url, { method: "POST", body: body }).catch(function(){});
+  }
+
+  // Enter key submits
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+      if (document.getElementById("signin-screen").style.display !== "none") submitGuest();
+      if (document.getElementById("success-screen").style.display !== "none") nextGuest();
+    }
+  });
+</script>
+
+</body>
+</html>
