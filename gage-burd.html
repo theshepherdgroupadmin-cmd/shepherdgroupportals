@@ -88,32 +88,30 @@
       gap: 8px;
     }
     .quick-card {
-      background: #0d1b2a;
-      border: 1px solid #0d1b2a;
       border-radius: 10px;
       padding: 14px 12px;
       text-decoration: none;
       display: flex;
       flex-direction: column;
       gap: 7px;
-      transition: background 0.15s, box-shadow 0.15s;
+      transition: opacity 0.15s, box-shadow 0.15s;
     }
     .quick-card:hover {
-      background: #1a2e42;
-      box-shadow: 0 4px 12px rgba(13,27,42,0.25);
+      opacity: 0.88;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18);
     }
     .q-icon {
       width: 26px; height: 26px;
       border-radius: 5px;
-      background: #c9a84c;
-      color: #0d1b2a;
+      background: rgba(255,255,255,0.22);
+      color: #fff;
       font-size: 8.5px;
       font-weight: 800;
       display: flex; align-items: center; justify-content: center;
       letter-spacing: -0.2px;
     }
     .q-label { font-size: 12px; font-weight: 600; color: #ffffff; line-height: 1.3; }
-    .q-sub   { font-size: 10px; color: #c9a84c; }
+    .q-sub   { font-size: 10px; color: rgba(255,255,255,0.7); }
 
     /* Forms row */
     .forms-row {
@@ -465,27 +463,27 @@
   <!-- Quick Access -->
   <div class="section-title">Quick Access</div>
   <div class="quick-row">
-    <a class="quick-card" href="https://www.realtracs.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#1B4B8A;border:1px solid #1B4B8A;" href="https://www.realtracs.com" target="_blank" rel="noopener">
       <div class="q-icon">RT</div>
       <div><div class="q-label">Realtracs</div><div class="q-sub">MLS ↗</div></div>
     </a>
-    <a class="quick-card" href="https://www.dotloop.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#F26522;border:1px solid #F26522;" href="https://www.dotloop.com" target="_blank" rel="noopener">
       <div class="q-icon">DL</div>
       <div><div class="q-label">Dotloop</div><div class="q-sub">Transactions ↗</div></div>
     </a>
-    <a class="quick-card" href="https://outlook.live.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#0078D4;border:1px solid #0078D4;" href="https://outlook.live.com" target="_blank" rel="noopener">
       <div class="q-icon">OL</div>
       <div><div class="q-label">Outlook</div><div class="q-sub">Email ↗</div></div>
     </a>
-    <a class="quick-card" href="https://app.followupboss.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#F47920;border:1px solid #F47920;" href="https://app.followupboss.com" target="_blank" rel="noopener">
       <div class="q-icon">FUB</div>
       <div><div class="q-label">Follow Up Boss</div><div class="q-sub">CRM ↗</div></div>
     </a>
-    <a class="quick-card" href="https://app.dealmachine.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#6D28D9;border:1px solid #6D28D9;" href="https://app.dealmachine.com" target="_blank" rel="noopener">
       <div class="q-icon">DM</div>
       <div><div class="q-label">Deal Machine</div><div class="q-sub">Leads ↗</div></div>
     </a>
-    <a class="quick-card" href="https://www.costar.com" target="_blank" rel="noopener">
+    <a class="quick-card" style="background:#005BAA;border:1px solid #005BAA;" href="https://www.costar.com" target="_blank" rel="noopener">
       <div class="q-icon">CS</div>
       <div><div class="q-label">CoStar</div><div class="q-sub">Research ↗</div></div>
     </a>
