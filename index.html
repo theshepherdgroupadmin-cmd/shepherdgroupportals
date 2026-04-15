@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Shepherd Group — Agent Portals</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0d1b2a;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+    .logo {
+      color: #c9a84c;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    h1 {
+      color: #ffffff;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      width: 100%;
+    }
+    .card {
+      background: #1a2a3a;
+      border: 1px solid #2a3d52;
+      border-radius: 12px;
+      padding: 32px 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: #c9a84c;
+      box-shadow: 0 8px 32px rgba(201,168,76,0.15);
+    }
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #c9a84c;
+      color: #0d1b2a;
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .name {
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .role {
+      color: #7a9bb5;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .footer {
+      margin-top: 48px;
+      color: #3a5068;
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo">The Shepherd Group</div>
+  <h1>Agent Portals</h1>
+
+  <div class="grid">
+    <a class="card" href="ryan-stonehouse.html">
+      <div class="avatar">RS</div>
+      <div class="name">Ryan Stonehouse</div>
+      <div class="role">Broker / Team Lead</div>
+    </a>
+    <a class="card" href="blake-barker.html">
+      <div class="avatar">BB</div>
+      <div class="name">Blake Barker</div>
+      <div class="role">Affiliate Broker</div>
+    </a>
+    <a class="card" href="joe-archer.html">
+      <div class="avatar">JA</div>
+      <div class="name">Joe Archer</div>
+      <div class="role">Affiliate Broker</div>
+    </a>
+    <a class="card" href="gage-burd.html">
+      <div class="avatar">GB</div>
+      <div class="name">Gage Burd</div>
+      <div class="role">Affiliate Broker</div>
+    </a>
+  </div>
+
+  <div class="footer">
+    Updated automatically · The Shepherd Group · Nashville, TN
+  </div>
+</body>
+</html>
