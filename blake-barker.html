@@ -377,188 +377,68 @@
   </div>
 
   <!-- Open House -->
-
-
   <div class="section-title">Open House</div>
   <div class="oh-card">
     <div class="oh-left" style="flex:1;">
       <div class="oh-title">Open House Sign-In</div>
-      <div class="oh-sub" style="margin-bottom:12px;">Enter the property address and date to generate a QR code. Guests scan it on their phone to sign in — no app needed.</div>
+      <div class="oh-sub" style="margin-bottom:14px;">
+        Set the property address and date, then launch the guest sign-in form.<br>
+        <span style="color:#bbb;">Run <strong>Start Open House.command</strong> from your Open House folder first.</span>
+      </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
         <input id="oh-address" type="text" placeholder="Property address"
-          style="flex:2; min-width:180px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:8px; font-size:12.5px; outline:none;" />
+               style="flex:1; min-width:180px; padding:8px 12px; border:1px solid #e5e5e5;
+                      border-radius:6px; font-size:13px; outline:none;"/>
         <input id="oh-date" type="date"
-          style="flex:1; min-width:130px; padding:8px 12px; border:1px solid #e5e5e5; border-radius:8px; font-size:12.5px; outline:none;" />
-        <button onclick="generateOHQR()" class="oh-btn oh-btn-dark" style="border:none; cursor:pointer;">Generate QR</button>
-        <a class="oh-btn oh-btn-outline" id="oh-dl-btn" href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,UEsDBBQAAAAIAA56i1xGx01IlQAAAM0AAAAQAAAAZG9jUHJvcHMvYXBwLnhtbE3PTQvCMAwG4L9SdreZih6kDkQ9ip68zy51hbYpbYT67+0EP255ecgboi6JIia2mEXxLuRtMzLHDUDWI/o+y8qhiqHke64x3YGMsRoPpB8eA8OibdeAhTEMOMzit7Dp1C5GZ3XPlkJ3sjpRJsPiWDQ6sScfq9wcChDneiU+ixNLOZcrBf+LU8sVU57mym/8ZAW/B7oXUEsDBBQAAAAIAA56i1yZBOJtFwEAAJMCAAARAAAAZG9jUHJvcHMvY29yZS54bWzNkkFPwzAMhf8K6r11027VFHW5gDiBhLQhELco9bqIJo2SjHb/njRs3SZx4cbR9vP3nizXwlDRW3yxvUHrJbq7UXXaUWHWyd57QwGc2KPiLgsKHYa73iruQ2lbMFx88hahyPMKFHrecM9hAqZmJiasbgQVFrnv7QnfiBlvDraLsEYAdqhQewckI5CwydEcx66GCyDCOq7bQzD+Ew11+rqJqPP6xPJolfuBYzPzYvdXaJxAclKOTs6qYRiyoYy6cA8C789Pm3i6VGrnuRYYtpyk/mhwnZyd38r7h+1jwoq8qNJ8kRKyzQu6WNFl+TGFvcl3Caz6Ru7kf0lMlpRUtFhdJT4HZHV4MYtf0sles7yG6zJWt//HvgFQSwMEFAAAAAgADnqLXPj7/oP6AgAAAg0AABMAAAB4bC90aGVtZS90aGVtZTEueG1szVddb9sgFH3fr0C8t9iOnTpRk6pJY+1h0qS1+wEEY5sVYwtYt/77YUj8UadZuqXT8kDgcjj3cuBekuubnyUHT1QqVokF9C89CKggVcpEvoBfH5KLGAKlsUgxrwRdwGeq4M3ywzWe64KWFJjlQs3xAhZa13OEFDFmrC6rmgozl1WyxNoMZY5SiX8Y2pKjwPOmqMRMwN16ecr6KssYoXcV+V5SoR2JpBxrE7oqWK0gELg0MX62QPDQBAiX+1A3nDbrVGMgXN4TG39/hcWmj37zpWS+XXMJnjBfQM9+IFpeoxbA9RiX2M8OtwOkj8EI5yfh7Oqu5Qsc3xi32WzWG7/lswBMiNnF2HeYxP5qz9kDue6Ye+1FXjjE9/gnI/xstVpFswF+0uHDET72puFtMMCHHT4ax7+6Xa+nA3zU4adjra9m03CIt6CCM/F48ATbk2khWcU/HoTHBh7vD7xDod7NceuFfu0elfhbJRMDsIdrLqkA+rmmGSYGt8blVjIMQc00KRJcMv5sgoSAFFgqqs0VaZzjOcW9Vc5E1AsTeuGsZOKYZ86M6/N57pyhviBWnrI/YJzf62dOPykbmKo4SxNjtAMLa+WvC9OFlrGdcaP+olzirq92tLkCdaWaHR3hNRWBCe1sUS+1h85y1SecNMBTSSdXp5H6rrCcyOpHx1hRTwVzXQFuKrg/DZwLoAjmNG2PVzNOv1CiAbenr20rbbttWudlIPFfyK0KnNKd3v5p0sS/V6bHOpucT/A+bXgGxb0/UxyNc4aL4Qj8MCFGQWSyF9cLmJlkN92yNk6VyCHAPDePOtFuX7VU+g6rwm3NptL+aREdXxCFTfDnI5zE/nkI0UsBaJYZPV+xdEMz50gOzp4fjA5Fts2T/7QAhicWwPAtpSrcl6phOs3eJUuDozvoZ2mNdQGaxtw5Jgl3T3WTZg/VPjfdg9Dk54WrQU2S7owmUf24562h+vfVtJM5PvHs3ijo5J0EjQ7oGZ1BTjTOLzT4+YFG/wH2luUvUEsDBBQAAAAIAA56i1ywcwHh+ggAAOpBAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDEueG1sndxbb9s4GgbgvyK4wGIX2MaW5EOSSYJNeRwgbYLYnQH2TrWZWKgseSUlafrrhzokMVPy1XIuGkR8TIr+SNcvWtNnT0X5vdoqVQc/dllenY+2db0/HY+r9Vbtkuqo2Ktcy11R7pJaX5b342pfqmTTdtpl42gymY93SZqPLs7atpsyuEuzWpWfi406H010e/FQZ2mutFQPu11SPn9SWfF0PgpHLw236f22bhrGF2f75F4tVf11345Ur4ob3dAMpG3c3+LibJPuVF6lRR6U6u58dBmeylncPKR9xB+peqoOfg+qbfHE9ZN4yJKqGattEGW6udITq7qp6Jbb4okUmdTPT5Vvrf9VZdFdlc08V8WVuqvbUerk21Jlal2rzeujr7tnu3zefSuyrttG3SUPWd3cTw9flG3jo57X+ShvKpvpkYp9MypRWdY8m1Gwbh74ux52Ph0FP4tit1wnma5DOJkcXH9pu79vbSp2lTzruv/R3qTVZqm/FcX3pqkZt1mZfZKr4Mdyn6Xd83nuf43eTygeBcm6Th/10LmexLeirotd4/o510mtm+7K4qfK2xVoK9Iszb59cD/SywhvT/HtuptPUP2vX0zbMIf39Btp/LoPDn9/2R+83dt6s31LKqWX5890U2/PR8evy3bQdjRfnMyPF7NX0xtGqn7z6tb1Q6Xn+NLSLIneOgeX/SvhSj2q7LZ5CbS7Wi911f4Mnrr7TF9G6u/b7Kz6uV19/esuzdumXfKjf8kcdA3j4b5R3zd61zeOhvvGfd/4/X3/jzlP+76z931nw33nfd/5u77RfLjvou+7+BtzPu77HrcbqVupdtvQpE4uzsriKehezs0Kx/P3W6AZUf+M9Gtt3Tzwsm/QZdSa5u3fFHWpOdUD1xfXN+xLIK+/Llnw+XK5YrfBUjK2Cv7x4TgKo9+ClWRNy41ktzQQt9dfb87GtZ5Y03u81n/0hF5nFfWzmgzOKuoapo5ZfTBv0vb5NNBH10dZupGBbjelfssp62dLVzrQladlVQdfkp3tvmyg81Xi7suH5rwtcls/MdCP6ffNzNJPDvRbpvf5x9/zYJW+n66x/HG3/NHw8sddw6y9X/NO/ngRno0fD1fbeMivU4om0fzjZPoxnNjWfLDzPPik8uAyy/TP203wYaGXoto+prrh38HqSxAvosnCtiUGRr59TnLbZhjotqz1gm6Lh8q6GwY6n0xO4sVcv0tMbVtioHOpJ/yf6vX2Omll9fO6OFoXO9tGGRhtcnI6OwluPoNNMu02SXhy9Mvb1y/bZNo1zF+3ydv2cBNxE3UTcxN3k3CTtJJRiplHKWZdw8JSCjcRN1E3MTdxNwk3SSsZpZh7lGLu3hVuIm6ibmJu4m4SbpJWMkqx8CjFwr0r3ETcRN3E3MTdJNwkrWSU4tijFMfuXeEm4ibqJuYm7ibhJmkloxQnHqU4ce8KNxE3UTcxN3E3CTdJKxmlCCcetWge7NoXwAgwCowB48AEMGk3syahT01C9wYBRoBRYAwYByaASbuZNYl8ahKBfeI2AowCY8A4MAFM2s2sSexTkxjsE7cRYBQYA8aBCWDSbmZNfCJpCDIpMAKMAmPAODABTNrNrIlPNg1BOAVGgFFgDBgHJoBJu5k18QmpIUipwAgwCowB48AEMGk3syY+aTUEcRUYAUaBMWAcmAAm7WbWxCe2hiC3AiPAKDAGjAMTwKTdzJr45NcQBFhgBBgFxoBxYAKYtJv5r6U+OTYCORYYAUaBMWAcmAAm7WbWxCfHRiDHAiPAKDAGjAMTwKTdzJr45NgI5FhgBBgFxoBxYAKYtJtZE58cG4EcC4wAo8AYMA5MAJN2M2vik2MjkGOBEWAUGAPGgQlg0m5mTXxybARyLDACjAJjwDgwAUzazayJT46NQI4FRoBRYAwYByaASbuZNfHJsRHIscAIMAqMAePABDBpN7MmPjk2AjkWGAFGgTFgHJgAJu1m1sQnx0YgxwIjwCgwBowDE8Ck3cz/9vXJsTHIscAIMAqMAePABDBpN7MmPjk2BjkWGAFGgTFgHJgAJu1m1sQnx8YgxwIjwCgwBowDE8Ck3cya+OTYGORYYAQYBcaAcWACmLSbWROfHBuDHAuMAKPAGDAOTACTdjNr4pNjY5BjgRFgFBgDxoEJYNJuZk18cmwMciwwAowCY8A4MAFM2s2siU+OjUGOBUaAUWAMGAcmgEm7mTXxybExyLHACDAKjAHjwAQwaTezJj45NgY5FhgBRoExYByYACbtZn4yzSfHTkGOBUaAUWAMGAcmgEm7mTXxybFTkGOBEWAUGAPGgQlg0m5mTXxy7BTkWGAEGAXGgHFgApi0m1kTnxw7BTkWGAFGgTFgHJgAJu1m1sTro67os67ow67o067o467o867oA6/oE6/DOXbqk2OnIMcCI8AoMAaMAxPApN3Mmvjk2CnIscAIMAqMAePABDBpN7MmPjl2CnIsMAKMAmPAODABTNrNrIlPjp2CHAuMAKPAGDAOTACTdjNr4pNjpyDHAiPAKDAGjAMTwKTdzGMFPjl2BnIsMAKMAmPAODABTNrNrIlPjp2BHAuMAKPAGDAOTACTdjNr4pNjZyDHAiPAKDAGjAMTwKTdzJq8nGGbDlekT4DH7Wi/noVaXa8urwLxlS1XS9txxpf+J7aquY0CY8A4MNFb1BzRvrsg11+/rC7/SeNTvUT/OhvfNefzzON58qVHaKnl+OC86k6V9+056SpYFw95U9rRQWt/mH4Wn/LuNP17CU9ld6T6baCLs32Z5vX1vjmrXQXbokx/FnmdZETltSpVdyD7UZV1un7XuFXJJs3vq/bi/u00/uHVUrWr3X8xwOekvE/1XbLuBP5RcxS77I9Xtxd1sW83R3davP112x7nbx4wC8PjMJxE8TyKJs1b/F1R1HZ6+yKCh32gn5KedtI8wfPRvijrMknrUbBP9qpcpj9Vex6kOjif335vwcFWba/fDhk3I1+X7aQ2xVO+2qr8WhdIzzpL1t8v882f27Ruv/Mg2JRJ/10Db4Wl+7T5b76Dqr61rIt92n2hQbNKr1/vcPEXUEsDBBQAAAAIAA56i1z541NITQUAAJMQAAAYAAAAeGwvd29ya3NoZWV0cy9zaGVldDIueG1slVhtb9s2EP4rhAoM64fZlpw4ThsH8Fy3CZDUQeS2wL4UtERbRChSI+k47q/f3Um2tLSTtQ8xxCN199wLH93lamfsk8uE8OwlV9pNgsz74l2/75JM5Nz1TCE07KyNzbmHpd30XWEFT+mlXPWjwWDUz7nUwfUVyR4sW0vlhb03qZgEA5CbrVdSC9hx2zzndv+nUGY3CcLgIHiUm8yjoH99VfCNiIX/UpAmvzQPIEBFsNevTFxfpTIX2kmjmRXrSTAN302jCI/Qia9S7FzjmbnM7D6CE1vFHeoiwScr0zsA5kooIHk0u5lRN+CfsLX0L2FNubKIc2nuxNqTFs9XsVAi8SI9al2U3sb7fGVU+Voq1nyrPNoD9caS8BlwTQKNkVWgyRSodSaUQm8CluDBW1A7OgvYD2PyOOEK4hAOBo31Z3r9tRQjdsf3EPevZIR2MdUrY55QdJuWmXEEHqNYcA3KKxQB4yB9FjWaen1befp3Ffc6Lai4+XxIwEcqHsjmijsB/n+Tqc8mwfgYl4asN7q4HI0vzo97kJEbUVUHSJOt8yY/SNBnyE1jWZXanXgW6hFrjMoGYunol+1KOxeDg6rKMGba7ym+8JhLTaKcv1RF2S9VkD8fuOfXV9bsWJlIND0cvcaGGuE3gigneHBaCYaQ60kgNdWIt7AtQbG/vll8Y8sF+xLP2fLmNmb303g5f2TxzXy+vOp7gIDn+gn8gemj/ai0H45P2o9IAJcE7eN1/UnXsLOuYanrv3wB5A8sZL+9GUdh9J49bjXzmWCx3Og/bjXDgmhx6awzjLOmSz/DWAB5sYB+b8zWHQH0MmCugEnNOFuBUScsgysA98XijVbAhsYyxQu4Dr0WoOedgZ63AwW6owAVFvjW+j3jaWqFc4zrlKXcC8SKB6YplCbdVcVWAlhZsM1WOA8nrYUL2oZ21Bnt6GSlXHTWddGhUqJjpcxfCmM9m67h+8HmPMlYnb0W18ad4YzbE/HJABFXUQZM55dn71miZPLEggoabM9fEgh/n83ir8jbLDU7rQxPKUMOSwzehqzxtmxcdoZ82Q55CUbhgyuA2hQWBdM8Fylb7cvC+V30Nj2K4neK4vdoEI0GZ2HUS9zz2zaE4aAzRDx6omLCsLu2sEPNDI8188Ad+HmrIRPLTDp2j2vLYqTqNve6M2cYdeAZTL6gGoHoQ2nglaVKaY1xd8oNh+0gZqYA3oASQEKDtL8kaptKvSFgGXU0b4lPCoqXxHjhVjCFdz4RiVA/A99Bbj2+yD3qYsNWB7qTdXiCrem6a+jVsOdkGRF2wjWWNC9AlGJVY+NYUaV4lnCGCe2tFK4VZHeiDs9PV3J3Ig1H7ZU8W9x9uf8ct0HvzrThRXt837DjlWFzCNqe6W2+ErbNendiDU8w6wckoxoALc2aUlnnuw1Kd8IMTzDmw+ErW8N5ePXhbWu4utNiNGgH8lFa59ln4Gv4mtzxw3MNi64lEXoboO7MGoUnIpMZjVjmMNCpBo6Z0R4mACCNchCEgaEN0P/oSU8w66FjXMp/xYWWWDrU/NA3F8hB/hJUv9GzFxZob1EgfgcVZ+UPdEzNgEOErUa4Z6gDmbwSIn8CJZaj46YeG5sraOIaE+w9txsJVlQ5KvZwpLHVmEIL6C0pICvjIULlIEEsjQfOw3AchoNoOIqiwRlc7LUx/tdb9cS8LaBtlQCbEjQJ8FtkuYRpruBQ3bH8IajvcI1BkgbsRnpoXc9EqHlhCRR2OdBr6AUECFArnjxNdfotk56Gc5ZaXg3FdWA/FBKmikEjqrUkMYUsJ28cr47/h7j+B1BLAwQUAAAACAAOeotcSqyZxikEAABcIgAADQAAAHhsL3N0eWxlcy54bWztWtuOmzAQ/RXEBxRzCbtUSaQtaqS+VJXah0pVH5zEIZbMpcbZJv362uZmWDtls2y6WxUewJ45M8fj8SUm85KdCPq8R4hZx5Rk5cLeM1a8dZxys0cpLN/kBcq4ZJfTFDJepIlTFhTBbSlAKXE8AEInhTizl/PskK5SVlqb/JCxhQ1sZznf5VlX47p2VcN1YYqse0gWdgwJXlMslDd7SEvORda7Eg5TTE5VhSdVcpJTi3F2qFYpf9X6suRU5odO7iiGZGgQ9ODg5cPPx0eaWCvCKlY0WS/sVX31fPp/wedU7bxe4Nw7cT+7z8mN9xoRyOvxfrTa8lFyFCakHds3dlWxnBeQMUSzFS9IjKx8ILLq9y+ngo/khMKT683s0YAyJ3grXCaxvrPWfYEvL2lfsflEb11+D7ytbsQ9tbfW6NCbJ+6pvbVGn79tAHSR1BqVD55x65xuEW1zbmY3Vcs5QTvG4RQne/FkeSGo54zlKX/ZYpjkGZQJ2SBUpCVXwoXN9nIl2xhSR6jWPkYipK6kMxLANRveIxGV8tPa+B6I+zFtVBDj2qgARrZRQYxtYz8DGuMp2uJDOjTfzRUqoSclCwCPDWQPMSaQPcCoQPYQTSDbhtUvfHBtECGfhZGvu3aEhdzUcWdVO7sPW7G0WGL2b175sKxfKzN1ARYFOd0RnGQpkhs/bgY2RWufU/yLGxELS4IyRPlaY90jyvBGVFUUJdvjbuA+8Dv/vtG/M0S5F6GCi1DeJahoJMhRO6nqMqW3vGCq7rIKfJ+zdwfeE5lU+XHIGfpE0Q4fZfm4q7AT9avCM+h4es/Pc8MrEFVp1jV/ojkz0HSvS9P6SWHxBR1ZvQ08yznsOPsqZ+9aKTAytgrP4CXzvOl4zlSe/rPwlKvDBSxvr8ry4gEFrkrzn5+for893TfMcbatvVw6nK5N+RGZ+qJX0jM8x5Ia7lNe3zh4jeu0q/RcqJIOJiP9z67Jr2WP8zr2DqYpxJ9kCvm/M5l0vv+/5D95tDr1L2rlNKR3FtLWWuKwfGF/FB/GSOfZWh8wYThrU38IiPM0hY2+29P3jfrWN/C9wXg9TKjFHChF2ebUQPweJDgHUT0FPdiNDvYJURHABjHrIWb9A4uyPpTiT5EfR7SN6yJN1r0TZiAvgR5KumPihxITRhwumyRCZvJjYmDCVIfYOsmtsT0A3BolQqa3ZsLcGjGiXi+JgbhNfvSYiF/6lkaR74ehNm7tV4MHkvZDw1AShgAYrK1M3AQijnWS7hB0fKzNvW3OkPN5YOrTcxliaqk5E+NYLxH1Zok+buKKIn1vm/xUMr0fU+5UMp1E5JQe4/txrPcj/JtGsFkSRSaJyEV9joahITqhuPX9Yxolvh9FeonA6Bl0nzF0o1GPMY/T7kPxQ27tF6fB/O0087rT/Z9k+RtQSwMEFAAAAAgADnqLXJeKuxzAAAAAEwIAAAsAAABfcmVscy8ucmVsc52SuW7DMAxAf8XQnjAH0CGIM2XxFgT5AVaiD9gSBYpFnb+v2qVxkAsZeT08EtweaUDtOKS2i6kY/RBSaVrVuAFItiWPac6RQq7ULB41h9JARNtjQ7BaLD5ALhlmt71kFqdzpFeIXNedpT3bL09Bb4CvOkxxQmlISzMO8M3SfzL38ww1ReVKI5VbGnjT5f524EnRoSJYFppFydOiHaV/Hcf2kNPpr2MitHpb6PlxaFQKjtxjJYxxYrT+NYLJD+x+AFBLAwQUAAAACAAOeotcnnA5jJEBAAA5AwAADwAAAHhsL3dvcmtib29rLnhtbLVS207kMAz9lSgfQDtdQDCiSCtGyyDtBXF9zjTu1CKNq8SlwNfjpipUQlrtyz7FPk7s43NyNlB42hE9qZfW+VjqhrlbZ1msGmhNPKAOvFRqCq1hScM+i10AY2MDwK3Lijw/zlqDXp+fzb2uQ7ZMiKFiJC/gCDwgDPGzPqbqGSPu0CG/ljrFDrRq0WOLb2BLnWsVGxq2FPCNPBt3WwVyrtSrqfAAgbH6At+OJO/MLibk5RG9pSF1e13EQwof0XIj946/nRzO2BZw33CpT1anhVZsdjdGFin1US7PagyR04TUxciOzyDDpqxn+oGOIWwMw2WgvkO/H2mICtlChqTjfE4mrMO/2EB1jRVsqOpb8Dz5EMCNBH1ssItaedNCqb87py57iBxHUWTKlZ0EYmG2kDusUQrhyiaO/4/PlgZ1R+o+woJP8Rc+RdJsFspCjR7sb+kVBRfTq+ugxiPtVRwerU7FnN65C8H++J9kpn0D1L/IjoJIguJMGpd/xBfUe7FylX9CG3Bs5M5BnueTc/OvPX8HUEsDBBQAAAAIAA56i1yN9yxatAAAAIkCAAAaAAAAeGwvX3JlbHMvd29ya2Jvb2sueG1sLnJlbHPFkk0KgzAQRq8ScoCO2tJFUVfduC1eIOj4g9GEzJTq7Wt1oYEuupGuwjch73swiR+oFbdmoKa1JMZeD5TIhtneAKhosFd0MhaH+aYyrlc8R1eDVUWnaoQoCK7g9gyZxnumyCeLvxBNVbUF3k3x7HHgL2B4GddRg8hS5MrVyImEUW9jguUITzNZiqxMpMvKUMK/hSJPKDpQiHjSSJvNmr3684H1PL/FrX2J69DfyeXjAN7PS99QSwMEFAAAAAgADnqLXG6nJLweAQAAVwQAABMAAABbQ29udGVudF9UeXBlc10ueG1sxZTPTsMwDMZfpcp1ajJ24IDWXYAr7MALhNZdo+afYm90b4/bbpNAo2IqEpdGje3v5/iLsn47RsCsc9ZjIRqi+KAUlg04jTJE8BypQ3Ka+DftVNRlq3egVsvlvSqDJ/CUU68hNusnqPXeUvbc8Taa4AuRwKLIHsfEnlUIHaM1pSaOq4OvvlHyE0Fy5ZCDjYm44AShrhL6yM+AU93rAVIyFWRbnehFO85SnVVIRwsopyWu9Bjq2pRQhXLvuERiTKArbADIWTmKLqbJxBOG8Xs3mz/ITAE5c5tCRHYswe24syV9dR5ZCBKZ6SNeiCw9+3zQu11B9Us2j/cjpHbwA9WwzJ/xV48v+jf2sfrHPt5DaP/6qverdNr4M18N78nmE1BLAQIUAxQAAAAIAA56i1xGx01IlQAAAM0AAAAQAAAAAAAAAAAAAACAAQAAAABkb2NQcm9wcy9hcHAueG1sUEsBAhQDFAAAAAgADnqLXJkE4m0XAQAAkwIAABEAAAAAAAAAAAAAAIABwwAAAGRvY1Byb3BzL2NvcmUueG1sUEsBAhQDFAAAAAgADnqLXPj7/oP6AgAAAg0AABMAAAAAAAAAAAAAAIABCQIAAHhsL3RoZW1lL3RoZW1lMS54bWxQSwECFAMUAAAACAAOeotcsHMB4foIAADqQQAAGAAAAAAAAAAAAAAAgIE0BQAAeGwvd29ya3NoZWV0cy9zaGVldDEueG1sUEsBAhQDFAAAAAgADnqLXPnjU0hNBQAAkxAAABgAAAAAAAAAAAAAAICBZA4AAHhsL3dvcmtzaGVldHMvc2hlZXQyLnhtbFBLAQIUAxQAAAAIAA56i1xKrJnGKQQAAFwiAAANAAAAAAAAAAAAAACAAecTAAB4bC9zdHlsZXMueG1sUEsBAhQDFAAAAAgADnqLXJeKuxzAAAAAEwIAAAsAAAAAAAAAAAAAAIABOxgAAF9yZWxzLy5yZWxzUEsBAhQDFAAAAAgADnqLXJ5wOYyRAQAAOQMAAA8AAAAAAAAAAAAAAIABJBkAAHhsL3dvcmtib29rLnhtbFBLAQIUAxQAAAAIAA56i1yN9yxatAAAAIkCAAAaAAAAAAAAAAAAAACAAeIaAAB4bC9fcmVscy93b3JrYm9vay54bWwucmVsc1BLAQIUAxQAAAAIAA56i1xupyS8HgEAAFcEAAATAAAAAAAAAAAAAACAAc4bAABbQ29udGVudF9UeXBlc10ueG1sUEsFBgAAAAAKAAoAhAIAAB0dAAAAAA==" download="Open House Master Sheet - Blake Barker.xlsx">⬇ Master Sheet</a>
+               style="padding:8px 10px; border:1px solid #e5e5e5; border-radius:6px;
+                      font-size:13px; outline:none; color:#111;"/>
+        <button onclick="launchOH()" class="oh-btn oh-btn-dark"
+                style="border:none; cursor:pointer; white-space:nowrap;">
+          Launch Sign-In
+        </button>
       </div>
+      <div id="oh-status" style="margin-top:10px; font-size:12px; color:#999; min-height:18px;"></div>
     </div>
   </div>
 
-  <!-- QR Output -->
-  <div id="oh-qr-section" style="display:none; margin-top:8px;">
-    <div style="background:#fff; border:1px solid #e5e5e5; border-radius:10px; padding:24px; display:flex; gap:28px; align-items:flex-start;">
-      <div id="oh-qrcode" style="flex-shrink:0;"></div>
-      <div style="display:flex; flex-direction:column; gap:10px; justify-content:center;">
-        <div style="font-size:13.5px; font-weight:700; color:#111;" id="oh-qr-address-label"></div>
-        <div style="font-size:12px; color:#999;" id="oh-qr-date-label"></div>
-        <div style="font-size:11.5px; color:#bbb; line-height:1.5;">Display this QR code at the front door.<br>Guests scan with their phone camera to sign in.</div>
-        <div style="display:flex; gap:8px; margin-top:4px;">
-          <button onclick="window.print()" class="oh-btn oh-btn-dark" style="border:none; cursor:pointer; font-size:11.5px;">🖨 Print QR</button>
-          <a id="oh-form-link" href="#" target="_blank" class="oh-btn oh-btn-outline" style="font-size:11.5px;">Open Form ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <script>
-    var OH_BASE_URL = "https://form.jotform.com/261003690363046?q6_textbox4=Blake+Barker";
-    var ohQRInstance = null;
+    // Set today's date as default
+    (function() {
+      var d = document.getElementById("oh-date");
+      if (d) d.valueAsDate = new Date();
+    })();
 
-    function generateOHQR() {
-      var addr = document.getElementById("oh-address").value.trim();
-      var date = document.getElementById("oh-date").value;
-      if (!addr) { alert("Please enter a property address."); return; }
+    function launchOH() {
+      var addr   = document.getElementById("oh-address").value.trim();
+      var date   = document.getElementById("oh-date").value;
+      var status = document.getElementById("oh-status");
 
-      var addrEnc = encodeURIComponent(addr);
-      var dateEnc = encodeURIComponent(date);
-      var url = OH_BASE_URL + "&q7_textbox5=" + addrEnc + "&q8_datetime6=" + dateEnc;
+      if (!addr) {
+        status.style.color = "#b71c1c";
+        status.textContent = "Please enter a property address.";
+        return;
+      }
 
-      var qrDiv = document.getElementById("oh-qrcode");
-      qrDiv.innerHTML = "";
-      ohQRInstance = new QRCode(qrDiv, {
-        text: url,
-        width: 160,
-        height: 160,
-        colorDark: "#111111",
-        colorLight: "#ffffff",
-        correctLevel: QRCode.CorrectLevel.M
+      status.style.color = "#999";
+      status.textContent = "Connecting to sign-in server…";
+
+      fetch("http://localhost:5050/config", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify({ property: addr, date: date })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function() {
+        status.style.color = "#1a7a40";
+        status.textContent = "✓ Property set. Opening sign-in form…";
+        setTimeout(function() { window.open("http://localhost:5050", "_blank"); }, 400);
+      })
+      .catch(function() {
+        status.style.color = "#b71c1c";
+        status.textContent = "Server not running. Double-click Start Open House.command in your Open House folder first.";
       });
-
-      document.getElementById("oh-qr-address-label").textContent = addr;
-      document.getElementById("oh-qr-date-label").textContent = date ? new Date(date + "T12:00:00").toLocaleDateString("en-US", {weekday:"long", year:"numeric", month:"long", day:"numeric"}) : "";
-      document.getElementById("oh-form-link").href = url;
-      document.getElementById("oh-qr-section").style.display = "block";
     }
   </script>
-
-  <!-- Agent Information -->
-  <div class="section-title">My Information</div>
-  <div class="info-grid">
-
-    <!-- Personal -->
-    <div class="info-card">
-      <div class="info-card-title">Personal</div>
-      <div class="info-rows">
-        <div class="info-row">
-          <span class="info-label">Phone</span>
-          <span class="info-value">—</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Email</span>
-          <span class="info-value">blake.barker@shepherdgroupre.com</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Start Date</span>
-          <span class="info-value">May 5, 2026</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Address</span>
-          <span class="info-value">—</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Brokerage -->
-    <div class="info-card">
-      <div class="info-card-title">Brokerage</div>
-      <div class="info-rows">
-        <div class="info-row">
-          <span class="info-label">Firm</span>
-          <span class="info-value">The Shepherd Group</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Office</span>
-          <span class="info-value">Nashville, TN</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Association</span>
-          <span class="info-value">Greater Nashville Realtors Association</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">NRDS #</span>
-          <span class="info-value">255531418</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- License -->
-    <div class="info-card">
-      <div class="info-card-title">License</div>
-      <div class="info-rows">
-        <div class="info-row">
-          <span class="info-label">License #</span>
-          <span class="info-value">367328</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Type</span>
-          <span class="info-value">Affiliate Broker</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">State</span>
-          <span class="info-value">Tennessee</span>
-        </div>
-        <div class="info-row exp-row">
-          <span class="info-label">Expires</span>
-          <span class="info-value">
-            May 31, 2026 &nbsp;<span class="badge badge-red">EXPIRES SOON</span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- E&O Insurance -->
-    <div class="info-card">
-      <div class="info-card-title">E&amp;O Insurance</div>
-      <div class="info-rows">
-        <div class="info-row">
-          <span class="info-label">Company</span>
-          <span class="info-value">RICE Insurance Co</span>
-        </div>
-        <div class="info-row">
-          <span class="info-label">Policy #</span>
-          <span class="info-value">25 EO 0015TN</span>
-        </div>
-        <div class="info-row exp-row">
-          <span class="info-label">Expires</span>
-          <span class="info-value">
-            July 1, 2026 &nbsp;<span class="badge badge-orange">77 Days</span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Update Info Button -->
-    <div class="info-card full" style="padding:14px 20px;">
-      <a href="https://form.jotform.com/261041788336056" target="_blank" rel="noopener"
-         style="display:flex;align-items:center;justify-content:space-between;
-                text-decoration:none;color:inherit;">
-        <div>
-          <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;
-                      text-transform:uppercase;color:#111;margin-bottom:3px;">
-            Update My Information
-          </div>
-          <div style="font-size:11.5px;color:#999;">
-            License, E&amp;O, contact details &amp; more
-          </div>
-        </div>
-        <span style="font-size:16px;color:#bbb;margin-left:12px;">&#8599;</span>
-      </a>
-    </div>
-  </div>
-
 </main>
 
 <footer>
