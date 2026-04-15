@@ -549,8 +549,8 @@
     <div class="oh-left" style="flex:1;">
       <div class="oh-title">Open House Sign-In</div>
       <div class="oh-sub" style="margin-bottom:14px;">
-        Set the property address and date, then launch the guest sign-in form.<br>
-        <span style="color:#bbb;">Run <strong>Start Open House.command</strong> from your Open House folder first.</span>
+        Enter the property address and date, then open the sign-in form on a tablet at the front door.
+        Your guest list will be <strong>emailed to you automatically</strong> after the open house.
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
         <input id="oh-address" type="text" placeholder="Property address"
@@ -577,7 +577,6 @@
   </div>
 
   <script>
-    // Set today's date as default
     (function() {
       var d = document.getElementById("oh-date");
       if (d) d.valueAsDate = new Date();
@@ -594,24 +593,15 @@
         return;
       }
 
-      status.style.color = "#999";
-      status.textContent = "Connecting to sign-in server…";
-
-      fetch("http://localhost:5050/config", {
-        method:  "POST",
-        headers: { "Content-Type": "application/json" },
-        body:    JSON.stringify({ property: addr, date: date })
-      })
-      .then(function(r) { return r.json(); })
-      .then(function() {
-        status.style.color = "#1a7a40";
-        status.textContent = "✓ Property set. Opening sign-in form…";
-        setTimeout(function() { window.open("http://localhost:5050", "_blank"); }, 400);
-      })
-      .catch(function() {
-        status.style.color = "#b71c1c";
-        status.textContent = "Server not running. Double-click Start Open House.command in your Open House folder first.";
+      var params = new URLSearchParams({
+        q6: "Joe Archer",
+        q7: addr,
+        q8: date || new Date().toISOString().split("T")[0]
       });
+
+      status.style.color = "#1a7a40";
+      status.textContent = "\u2713 Sign-in form opened \u2014 place it at the front door for guests.";
+      window.open("https://form.jotform.com/261003690363046?" + params.toString(), "_blank");
     }
   </script>
 
