@@ -14,103 +14,198 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 48px 20px;
     }
     .logo {
       color: #c9a84c;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 4px;
+      letter-spacing: 5px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     h1 {
       color: #ffffff;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 300;
       letter-spacing: 2px;
-      margin-bottom: 48px;
+      margin-bottom: 8px;
       text-align: center;
+    }
+    .subtitle {
+      color: #4a6880;
+      font-size: 13px;
+      margin-bottom: 48px;
+      letter-spacing: 1px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 20px;
-      max-width: 960px;
+      max-width: 920px;
       width: 100%;
     }
     .card {
       background: #1a2a3a;
-      border: 1px solid #2a3d52;
-      border-radius: 12px;
-      padding: 32px 24px;
+      border: 1px solid #243648;
+      border-radius: 14px;
+      padding: 28px 20px 24px;
       text-align: center;
       text-decoration: none;
       transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #c9a84c, #e8c97a);
+      opacity: 0;
+      transition: opacity 0.15s;
     }
     .card:hover {
-      transform: translateY(-4px);
-      border-color: #c9a84c;
-      box-shadow: 0 8px 32px rgba(201,168,76,0.15);
+      transform: translateY(-5px);
+      border-color: #c9a84c44;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
+    .card:hover::before { opacity: 1; }
     .avatar {
-      width: 64px;
-      height: 64px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
-      background: #c9a84c;
+      background: linear-gradient(135deg, #c9a84c, #a07830);
       color: #0d1b2a;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 16px;
+      margin: 0 auto 14px;
+      letter-spacing: 1px;
     }
     .name {
       color: #ffffff;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 600;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .role {
+      color: #5a8099;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .open-btn {
+      display: inline-block;
+      background: #0d1b2a;
+      border: 1px solid #2a3d52;
+      color: #c9a84c;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 7px 18px;
+      border-radius: 20px;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .card:hover .open-btn {
+      background: #c9a84c;
+      color: #0d1b2a;
+      border-color: #c9a84c;
+    }
+    .divider {
+      width: 100%;
+      max-width: 920px;
+      border: none;
+      border-top: 1px solid #1a2a3a;
+      margin: 44px 0 28px;
+    }
+    .quick-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 920px;
+    }
+    .quick-link {
+      background: #1a2a3a;
+      border: 1px solid #243648;
+      border-radius: 8px;
+      padding: 10px 20px;
       color: #7a9bb5;
       font-size: 12px;
+      font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .quick-link:hover {
+      color: #c9a84c;
+      border-color: #c9a84c44;
     }
     .footer {
-      margin-top: 48px;
-      color: #3a5068;
-      font-size: 12px;
+      margin-top: 44px;
+      color: #2a3d52;
+      font-size: 11px;
       text-align: center;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
+
   <div class="logo">The Shepherd Group</div>
   <h1>Agent Portals</h1>
+  <div class="subtitle">Nashville, TN</div>
 
   <div class="grid">
-    <a class="card" href="ryan-stonehouse.html">
-      <div class="avatar">RS</div>
-      <div class="name">Ryan Stonehouse</div>
-    </a>
+
     <a class="card" href="blake-barker.html">
       <div class="avatar">BB</div>
       <div class="name">Blake Barker</div>
+      <div class="role">Managing Broker</div>
+      <span class="open-btn">Open Portal</span>
     </a>
+
+    <a class="card" href="ryan-stonehouse.html">
+      <div class="avatar">RS</div>
+      <div class="name">Ryan Stonehouse</div>
+      <div class="role">Affiliate Broker</div>
+      <span class="open-btn">Open Portal</span>
+    </a>
+
     <a class="card" href="joe-archer.html">
       <div class="avatar">JA</div>
       <div class="name">Joe Archer</div>
+      <div class="role">Affiliate Broker</div>
+      <span class="open-btn">Open Portal</span>
     </a>
+
     <a class="card" href="gage-burd.html">
       <div class="avatar">GB</div>
       <div class="name">Gage Burd</div>
+      <div class="role">Affiliate Broker</div>
+      <span class="open-btn">Open Portal</span>
     </a>
+
+  </div>
+
+  <hr class="divider"/>
+
+  <div class="quick-links">
+    <a class="quick-link" href="open-house-blake.html">Blake — Open House</a>
+    <a class="quick-link" href="open-house-ryan.html">Ryan — Open House</a>
+    <a class="quick-link" href="open-house-joe.html">Joe — Open House</a>
+    <a class="quick-link" href="open-house-gage.html">Gage — Open House</a>
   </div>
 
   <div class="footer">
-    Updated automatically · The Shepherd Group · Nashville, TN
+    Updated automatically each morning · The Shepherd Group
   </div>
+
 </body>
 </html>
