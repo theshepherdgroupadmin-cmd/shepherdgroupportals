@@ -286,6 +286,7 @@
           Your guest list is on its way to<br>
           <strong>blake.barker@shepherdgroupre.com</strong>
         </div>
+        <div id="local-guest-list" style="display:none;margin-top:20px;text-align:left;background:#f9f9f9;border:1px solid #ddd;border-radius:8px;padding:16px;font-size:14px;line-height:1.8;max-width:420px;margin-left:auto;margin-right:auto;"></div>
       </div>
     </div>
 
@@ -296,11 +297,19 @@
 
 <script>
   var FORM_ID    = "261003690363046";
-  var API_KEY    = "522458869b59e22693912180a90c79f0";
+  var API_KEY    = "0d6a4c87a37a150ce1eae4ca9f5dedb1";
   var AGENT_NAME = "Blake Barker";
   var property   = "";
   var ohDate     = "";
   var guestCount = 0;
+  var localGuests = [];
+
+  function localKey() { return "oh_" + AGENT_NAME + "_" + property + "_" + ohDate; }
+
+  function saveLocally(guest) {
+    localGuests.push(guest);
+    try { localStorage.setItem(localKey(), JSON.stringify(localGuests)); } catch(e) {}
+  }
 
   document.getElementById("setup-date").valueAsDate = new Date();
 
@@ -311,6 +320,8 @@
       document.getElementById("setup-address").style.borderColor = "#b71c1c";
       return;
     }
+    localGuests = [];
+    try { var s = localStorage.getItem(localKey()); if (s) localGuests = JSON.parse(s); } catch(e) {}
     var bar = document.getElementById("address-bar");
     bar.textContent = property + (ohDate ? "  \u00b7  " + ohDate : "");
     bar.style.display = "block";
@@ -330,6 +341,10 @@
       return;
     }
     err.style.display = "none";
+
+    // Save locally BEFORE API call so data is never lost
+    saveLocally({ first: fn, last: ln, phone: phone, email: em,
+                  time: new Date().toLocaleTimeString(), property: property, date: ohDate });
 
     var btn = document.getElementById("submit-btn");
     btn.disabled = true;
@@ -374,6 +389,21 @@
     if (!property) { alert("Open house has not started yet."); return; }
     if (!confirm("End the open house? Your guest list will be emailed to you.")) return;
     show("ended-screen");
+
+    // Show local backup list on screen
+    var listDiv = document.getElementById("local-guest-list");
+    if (listDiv && localGuests.length > 0) {
+      var html = "<strong>Guest Backup (" + localGuests.length + " guests):</strong><br><br>";
+      localGuests.forEach(function(g, i) {
+        html += (i+1) + ". <strong>" + g.first + " " + g.last + "</strong>";
+        if (g.phone) html += " &nbsp;|&nbsp; " + g.phone;
+        if (g.email) html += " &nbsp;|&nbsp; " + g.email;
+        html += "<br>";
+      });
+      listDiv.innerHTML = html;
+      listDiv.style.display = "block";
+    }
+
     var url  = "https://api.jotform.com/form/" + FORM_ID + "/submissions?apiKey=" + API_KEY;
     var body = new URLSearchParams({
       "submission[2]": "END_SESSION",
