@@ -797,7 +797,7 @@
               for (var ag in agents) {
                 var pre = agents[ag];
                 var info = d.agent_blake[ag];
-                if (\!info) continue;
+                if (!info) continue;
                 setW("stat-" + pre + "-blake-bar", info.bar_pct);
                 set("stat-" + pre + "-blake-paid", fmt$(info.paid));
                 var sub = fmt$(info.paid) + " paid \u00a0\u00b7\u00a0 ";
