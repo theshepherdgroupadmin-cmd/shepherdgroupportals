@@ -762,6 +762,58 @@
 
   <script>
     (function() {
+      var COMM_GAS_URL = "PASTE_COMM_GAS_URL_HERE";
+      var AGENT_NAME   = "Blake Barker";
+
+      function fmt$(n) {
+        return "$" + Math.round(n).toLocaleString("en-US");
+      }
+
+      function loadCommStats() {
+        fetch(COMM_GAS_URL + "?action=stats&agent=" + encodeURIComponent(AGENT_NAME))
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.status \!== "ok") return;
+            function set(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+            function setW(id, pct) { var el = document.getElementById(id); if (el) el.style.width = pct + "%"; }
+
+            set("stat-sales-volume",   fmt$(d.sales_volume));
+            set("stat-net-commission", fmt$(d.net_ytd));
+            set("stat-deals-closed",   d.deals_closed);
+            setW("stat-tier-bar", d.tier_bar_pct);
+            set("stat-tier-badge", d.tier);
+
+            var tierSub = fmt$(d.gross_ytd) + " agent gross YTD";
+            if (d.to_next_tier > 0) {
+              tierSub += " \u00a0\u00b7\u00a0 " + fmt$(d.to_next_tier) + "\u00a0to next tier (" + d.next_tier + ")";
+            } else {
+              tierSub += " \u00a0\u00b7\u00a0 Top tier reached \u2713";
+            }
+            set("stat-tier-sub", tierSub);
+            set("stat-team-sales-vol", fmt$(d.team_sales_vol));
+
+            if (d.agent_blake) {
+              var agents = { "Ryan": "ryan", "Joe": "joe", "Gage": "gage" };
+              for (var ag in agents) {
+                var pre = agents[ag];
+                var info = d.agent_blake[ag];
+                if (\!info) continue;
+                setW("stat-" + pre + "-blake-bar", info.bar_pct);
+                set("stat-" + pre + "-blake-paid", fmt$(info.paid));
+                var sub = fmt$(info.paid) + " paid \u00a0\u00b7\u00a0 ";
+                sub += info.cap_hit ? "Cap reached \u2713" : fmt$(info.remaining) + " remaining";
+                set("stat-" + pre + "-blake-sub", sub);
+              }
+            }
+          }).catch(function() {});
+      }
+
+      loadCommStats();
+    })();
+  </script>
+
+  <script>
+    (function() {
       var PROFILE_GAS_URL = "https://script.google.com/macros/s/AKfycbwRgdm1dy30LkJAT10aO3K9b0McsbeouPn7JJwVbevmT-q6Rm_jR5H0o19PfKVGdCG4/exec";
       var AGENT_NAME = "Blake Barker";
 
