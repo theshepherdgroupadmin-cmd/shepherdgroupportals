@@ -613,19 +613,19 @@
       <div class="info-rows">
         <div class="info-row">
           <span class="info-label">Phone</span>
-          <span class="info-value">—</span>
+          <span class="info-value" id="prof-phone">—</span>
         </div>
         <div class="info-row">
           <span class="info-label">Email</span>
-          <span class="info-value">blake.barker@shepherdgroupre.com</span>
+          <span class="info-value" id="prof-email">blake.barker@shepherdgroupre.com</span>
         </div>
         <div class="info-row">
           <span class="info-label">Start Date</span>
-          <span class="info-value">May 5, 2026</span>
+          <span class="info-value" id="prof-start">May 5, 2026</span>
         </div>
         <div class="info-row">
           <span class="info-label">Address</span>
-          <span class="info-value">—</span>
+          <span class="info-value" id="prof-address">—</span>
         </div>
       </div>
     </div>
@@ -648,7 +648,7 @@
         </div>
         <div class="info-row">
           <span class="info-label">NRDS #</span>
-          <span class="info-value">255531418</span>
+          <span class="info-value" id="prof-nrds">255531418</span>
         </div>
       </div>
     </div>
@@ -659,24 +659,19 @@
       <div class="info-rows">
         <div class="info-row">
           <span class="info-label">License #</span>
-          <span class="info-value">367328</span>
+          <span class="info-value" id="prof-license-num">367328</span>
         </div>
         <div class="info-row">
           <span class="info-label">Type</span>
-          <span class="info-value">Affiliate Broker</span>
+          <span class="info-value" id="prof-license-type">Affiliate Broker</span>
         </div>
         <div class="info-row">
           <span class="info-label">State</span>
-          <span class="info-value">Tennessee</span>
+          <span class="info-value" id="prof-license-state">Tennessee</span>
         </div>
         <div class="info-row exp-row">
           <span class="info-label">Expires</span>
-          <span class="info-value">
-            May 31, 2026 &nbsp;<span class="badge badge-orange">41 Days</span>
-          </span>
-          </span>
-          </span>
-          </span>
+          <span class="info-value" id="prof-license-exp">May 31, 2026 &nbsp;<span class="badge badge-orange">41 Days</span></span>
         </div>
       </div>
     </div>
@@ -687,41 +682,73 @@
       <div class="info-rows">
         <div class="info-row">
           <span class="info-label">Company</span>
-          <span class="info-value">RISC Insurance Co</span>
+          <span class="info-value" id="prof-eo-company">RISC Insurance Co</span>
         </div>
         <div class="info-row">
           <span class="info-label">Policy #</span>
-          <span class="info-value">—</span>
+          <span class="info-value" id="prof-eo-policy">—</span>
         </div>
         <div class="info-row exp-row">
           <span class="info-label">Expires</span>
-          <span class="info-value">
-            May 31, 2026 &nbsp;<span class="badge badge-orange">41 Days</span>
-          </span>
-          </span>
-          </span>
-          </span>
+          <span class="info-value" id="prof-eo-exp">May 31, 2026 &nbsp;<span class="badge badge-orange">41 Days</span></span>
         </div>
       </div>
     </div>
 
+    <!-- Edit button -->
     <div class="info-card full" style="padding:14px 20px;">
-      <a href="https://form.jotform.com/261041788336056" target="_blank" rel="noopener"
-         style="display:flex;align-items:center;justify-content:space-between;
-                text-decoration:none;color:inherit;">
+      <button onclick="openProfileEdit()"
+        style="display:flex;align-items:center;justify-content:space-between;
+               width:100%;background:none;border:none;cursor:pointer;padding:0;color:inherit;">
         <div>
           <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;
                       text-transform:uppercase;color:#111;margin-bottom:3px;">
-            Update My Information
+            Edit My Information
           </div>
           <div style="font-size:11.5px;color:#999;">
             License, E&amp;O, contact details &amp; more
           </div>
         </div>
-        <span style="font-size:16px;color:#bbb;margin-left:12px;">&#8599;</span>
-      </a>
+        <span style="font-size:16px;color:#bbb;margin-left:12px;">&#9998;</span>
+      </button>
     </div>
 
+  </div>
+
+  <!-- Profile Edit Modal -->
+  <div id="profile-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:2000;overflow-y:auto;">
+    <div style="max-width:520px;margin:40px auto 60px;background:#fff;border-radius:14px;padding:30px;box-shadow:0 8px 40px rgba(0,0,0,0.18);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+        <div style="font-size:15px;font-weight:700;color:#0d1b2a;">Edit My Information</div>
+        <button onclick="closeProfileEdit()" style="background:none;border:none;cursor:pointer;font-size:20px;color:#999;line-height:1;">&#10005;</button>
+      </div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;">Personal</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Phone</label><input id="edit-phone" type="tel" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Email</label><input id="edit-email" type="email" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Start Date</label><input id="edit-start" type="text" placeholder="e.g. Sep 16, 2025" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">NRDS #</label><input id="edit-nrds" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div style="grid-column:1/-1;"><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Address</label><input id="edit-address" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+      </div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;">License</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;">
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">License #</label><input id="edit-license-num" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Type</label><input id="edit-license-type" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">State</label><input id="edit-license-state" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Expiration Date</label><input id="edit-license-exp" type="text" placeholder="e.g. Jan 9, 2028" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+      </div>
+      <div style="font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#c9a84c;margin-bottom:12px;">E&amp;O Insurance</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px;">
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Company</label><input id="edit-eo-company" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Policy #</label><input id="edit-eo-policy" type="text" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+        <div><label style="font-size:11px;color:#888;display:block;margin-bottom:4px;">Expiration Date</label><input id="edit-eo-exp" type="text" placeholder="e.g. Jan 9, 2028" style="width:100%;box-sizing:border-box;padding:8px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;" /></div>
+      </div>
+      <div style="display:flex;justify-content:flex-end;gap:10px;">
+        <button onclick="closeProfileEdit()" style="padding:9px 18px;border:1px solid #ddd;border-radius:7px;background:#fff;font-size:13px;cursor:pointer;color:#555;">Cancel</button>
+        <button onclick="saveProfile()" id="save-btn" style="padding:9px 18px;border:none;border-radius:7px;background:#0d1b2a;font-size:13px;cursor:pointer;color:#fff;font-weight:600;">Save Changes</button>
+      </div>
+      <div id="prof-save-status" style="margin-top:10px;font-size:12px;text-align:center;min-height:16px;"></div>
+    </div>
   </div>
 
 </main>
@@ -732,6 +759,99 @@
   </div>
   <div class="footer-sub">Blake Barker &nbsp;·&nbsp; April 13, 2026</div>
 </footer>
+
+  <script>
+    (function() {
+      var PROFILE_GAS_URL = "PASTE_PROFILE_GAS_URL_HERE";
+      var AGENT_NAME = "Blake Barker";
+
+      function expBadge(dateStr) {
+        if (!dateStr || dateStr === "—") return dateStr || "—";
+        var d = new Date(dateStr);
+        if (isNaN(d.getTime())) return dateStr;
+        var today = new Date(); today.setHours(0,0,0,0);
+        var diff = Math.floor((d - today) / 86400000);
+        var badge;
+        if (diff < 0) badge = '<span class="badge badge-red">Expired</span>';
+        else if (diff <= 60) badge = '<span class="badge badge-orange">' + diff + ' Days</span>';
+        else badge = '<span class="badge badge-green">Current</span>';
+        return dateStr + ' &nbsp;' + badge;
+      }
+
+      function loadProfile() {
+        fetch(PROFILE_GAS_URL + "?action=load&agent=" + encodeURIComponent(AGENT_NAME))
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (d.status !== "ok" || !d.name) return;
+            function set(id, val) { var el = document.getElementById(id); if (el && val) el.textContent = val; }
+            set("prof-phone", d.phone); set("prof-email", d.email);
+            set("prof-start", d.start_date); set("prof-address", d.address);
+            set("prof-nrds", d.nrds); set("prof-license-num", d.license_num);
+            set("prof-license-type", d.license_type); set("prof-license-state", d.license_state);
+            set("prof-eo-company", d.eo_company); set("prof-eo-policy", d.eo_policy);
+            var lExp = document.getElementById("prof-license-exp");
+            if (lExp && d.license_exp) lExp.innerHTML = expBadge(d.license_exp);
+            var eoExp = document.getElementById("prof-eo-exp");
+            if (eoExp && d.eo_exp) eoExp.innerHTML = expBadge(d.eo_exp);
+          }).catch(function() {});
+      }
+
+      window.openProfileEdit = function() {
+        function get(id) { var el = document.getElementById(id); return el ? el.textContent.trim() : ""; }
+        function getExp(id) {
+          var el = document.getElementById(id); if (!el) return "";
+          var c = el.cloneNode(true); var b = c.querySelector(".badge"); if (b) b.remove();
+          return c.textContent.trim();
+        }
+        document.getElementById("edit-phone").value = get("prof-phone");
+        document.getElementById("edit-email").value = get("prof-email");
+        document.getElementById("edit-start").value = get("prof-start");
+        document.getElementById("edit-address").value = get("prof-address");
+        document.getElementById("edit-nrds").value = get("prof-nrds");
+        document.getElementById("edit-license-num").value = get("prof-license-num");
+        document.getElementById("edit-license-type").value = get("prof-license-type");
+        document.getElementById("edit-license-state").value = get("prof-license-state");
+        document.getElementById("edit-license-exp").value = getExp("prof-license-exp");
+        document.getElementById("edit-eo-company").value = get("prof-eo-company");
+        document.getElementById("edit-eo-policy").value = get("prof-eo-policy");
+        document.getElementById("edit-eo-exp").value = getExp("prof-eo-exp");
+        document.getElementById("prof-save-status").textContent = "";
+        document.getElementById("profile-modal").style.display = "block";
+      };
+      window.closeProfileEdit = function() { document.getElementById("profile-modal").style.display = "none"; };
+      window.saveProfile = function() {
+        var btn = document.getElementById("save-btn");
+        var status = document.getElementById("prof-save-status");
+        btn.disabled = true; btn.textContent = "Saving…";
+        var params = "?action=save&agent=" + encodeURIComponent(AGENT_NAME) +
+          "&phone="         + encodeURIComponent(document.getElementById("edit-phone").value) +
+          "&email="         + encodeURIComponent(document.getElementById("edit-email").value) +
+          "&start_date="    + encodeURIComponent(document.getElementById("edit-start").value) +
+          "&address="       + encodeURIComponent(document.getElementById("edit-address").value) +
+          "&nrds="          + encodeURIComponent(document.getElementById("edit-nrds").value) +
+          "&license_num="   + encodeURIComponent(document.getElementById("edit-license-num").value) +
+          "&license_type="  + encodeURIComponent(document.getElementById("edit-license-type").value) +
+          "&license_state=" + encodeURIComponent(document.getElementById("edit-license-state").value) +
+          "&license_exp="   + encodeURIComponent(document.getElementById("edit-license-exp").value) +
+          "&eo_company="    + encodeURIComponent(document.getElementById("edit-eo-company").value) +
+          "&eo_policy="     + encodeURIComponent(document.getElementById("edit-eo-policy").value) +
+          "&eo_exp="        + encodeURIComponent(document.getElementById("edit-eo-exp").value);
+        fetch(PROFILE_GAS_URL + params)
+          .then(function(r) { return r.json(); })
+          .then(function() {
+            btn.disabled = false; btn.textContent = "Save Changes";
+            status.style.color = "#1a7a40"; status.textContent = "✓ Saved successfully";
+            setTimeout(function() { closeProfileEdit(); loadProfile(); }, 800);
+          })
+          .catch(function() {
+            btn.disabled = false; btn.textContent = "Save Changes";
+            status.style.color = "#b71c1c"; status.textContent = "Error saving. Please try again.";
+          });
+      };
+
+      loadProfile();
+    })();
+  </script>
 
   <script>
     (function() {
