@@ -296,9 +296,9 @@
 <footer>The Shepherd Group &nbsp;&middot;&nbsp; Nashville, TN</footer>
 
 <script>
-  var FORM_ID    = "261003690363046";
-  var API_KEY    = "0d6a4c87a37a150ce1eae4ca9f5dedb1";
+  var GAS_URL    = "GAS_URL_PLACEHOLDER";
   var AGENT_NAME = "Ryan Stonehouse";
+  var AGENT_EMAIL = "ryan.stonehouse@shepherdgroupre.com";
   var property   = "";
   var ohDate     = "";
   var guestCount = 0;
@@ -350,18 +350,19 @@
     btn.disabled = true;
     btn.textContent = "Signing in...";
 
-    var url  = "https://api.jotform.com/form/" + FORM_ID + "/submissions?apiKey=" + API_KEY;
     var body = new URLSearchParams({
-      "submission[2]": fn,
-      "submission[3]": ln,
-      "submission[4]": phone,
-      "submission[5]": em,
-      "submission[6]": AGENT_NAME,
-      "submission[7]": property,
-      "submission[8]": ohDate
+      "action":     "guest",
+      "agentName":  AGENT_NAME,
+      "agentEmail": AGENT_EMAIL,
+      "property":   property,
+      "ohDate":     ohDate,
+      "firstName":  fn,
+      "lastName":   ln,
+      "phone":      phone,
+      "email":      em
     });
 
-    fetch(url, { method: "POST", body: body })
+    fetch(GAS_URL, { method: "POST", body: body })
       .then(function(r) { return r.json(); })
       .then(function() { signedIn(fn); })
       .catch(function()  { signedIn(fn); });
@@ -404,15 +405,15 @@
       listDiv.style.display = "block";
     }
 
-    var url  = "https://api.jotform.com/form/" + FORM_ID + "/submissions?apiKey=" + API_KEY;
-    var body = new URLSearchParams({
-      "submission[2]": "END_SESSION",
-      "submission[3]": guestCount + " guests",
-      "submission[6]": AGENT_NAME,
-      "submission[7]": property,
-      "submission[8]": ohDate
+    var endBody = new URLSearchParams({
+      "action":     "end_session",
+      "agentName":  AGENT_NAME,
+      "agentEmail": AGENT_EMAIL,
+      "property":   property,
+      "ohDate":     ohDate,
+      "guestCount": String(guestCount)
     });
-    fetch(url, { method: "POST", body: body }).catch(function(){});
+    fetch(GAS_URL, { method: "POST", body: endBody }).catch(function(){});
   }
 
   function show(id) {
