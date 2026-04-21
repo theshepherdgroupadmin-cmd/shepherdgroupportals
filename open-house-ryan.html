@@ -362,7 +362,7 @@
       "email":      em
     });
 
-    fetch(GAS_URL, { method: "POST", body: body })
+    fetch(GAS_URL, { method: "POST", body: body, mode: 'no-cors' })
       .then(function(r) { return r.json(); })
       .then(function() { signedIn(fn); })
       .catch(function()  { signedIn(fn); });
@@ -413,7 +413,7 @@
       "ohDate":     ohDate,
       "guestCount": String(guestCount)
     });
-    fetch(GAS_URL, { method: "POST", body: endBody }).catch(function(){});
+    fetch(GAS_URL, { method: "POST", body: endBody, mode: 'no-cors' }).catch(function(){});
   }
 
   function show(id) {
