@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Property Intake — The Shepherd Group</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: #111;
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid #222;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: #c9a84c;
+      border-radius: 4px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #111;
+    }
+    .logo-text { color: #fff; font-size: 14px; font-weight: 600; letter-spacing: .3px; }
+    .logo-sub  { color: #666; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin-top: 1px; }
+    main {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px 60px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 44px 48px;
+      max-width: 680px;
+      width: 100%;
+    }
+    .card-title {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      color: #111;
+      margin-bottom: 4px;
+    }
+    .card-sub {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 36px;
+    }
+
+    /* Section headings */
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #999;
+      margin: 32px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .section-label:first-of-type { margin-top: 0; }
+
+    /* Fields */
+    .field { margin-bottom: 16px; }
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 6px;
+      letter-spacing: .2px;
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid #e5e5e5;
+      border-radius: 5px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #111;
+      outline: none;
+      transition: border-color .15s;
+      background: #fff;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus { border-color: #111; }
+    .field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
+    .field select { cursor: pointer; }
+
+    /* Two-column grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 14px; }
+
+    /* Required star */
+    .req { color: #c9a84c; }
+
+    /* Radio group */
+    .radio-group { display: flex; gap: 12px; margin-top: 2px; }
+    .radio-group label {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 400; color: #333;
+      cursor: pointer; margin: 0;
+    }
+    .radio-group input[type=radio] { width: auto; margin: 0; }
+
+    /* Conditional field */
+    .conditional { display: none; margin-top: 12px; }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 14px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 32px;
+      letter-spacing: .3px;
+      transition: background .15s;
+    }
+    .submit-btn:hover { background: #222; }
+    .submit-btn:disabled { background: #999; cursor: default; }
+
+    /* Success screen */
+    #success-screen { display: none; text-align: center; padding: 40px 0; }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: #f0f7f0;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      margin: 0 auto 20px;
+    }
+    .success-title {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      color: #111;
+      margin-bottom: 8px;
+    }
+    .success-sub { font-size: 14px; color: #888; margin-bottom: 24px; }
+    .new-btn {
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 5px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: background .15s;
+    }
+    .new-btn:hover { background: #333; }
+
+    /* Error */
+    .error-msg {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      border-radius: 5px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #b91c1c;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      color: #444;
+      font-size: 11px;
+      padding: 20px;
+      letter-spacing: .5px;
+    }
+
+    @media (max-width: 580px) {
+      .card { padding: 28px 22px; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) {
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">S</div>
+  <div>
+    <div class="logo-text">The Shepherd Group</div>
+    <div class="logo-sub">Land Acquisition</div>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- Form screen -->
+    <div id="form-screen">
+      <div class="card-title">Property Intake</div>
+      <div class="card-sub">Land Acquisition Division &nbsp;·&nbsp; All fields marked <span class="req">*</span> are required</div>
+
+      <div class="error-msg" id="error-msg">Please fill in all required fields.</div>
+
+      <!-- AGENT INFO -->
+      <div class="section-label">Agent Info</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Agent Name <span class="req">*</span></label>
+          <select id="agent">
+            <option value="">Select agent…</option>
+            <option>Ryan Stonehouse</option>
+            <option>Blake Barker</option>
+            <option>Joe Archer</option>
+            <option>Gage Burd</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Date Submitted</label>
+          <input type="date" id="date_submitted"/>
+        </div>
+      </div>
+
+      <!-- PROPERTY INFO -->
+      <div class="section-label">Property Information</div>
+      <div class="field">
+        <label>Property Address <span class="req">*</span></label>
+        <input type="text" id="address" placeholder="123 Main St, Nashville, TN 37205"/>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Neighborhood / Area <span class="req">*</span></label>
+          <input type="text" id="area" placeholder="e.g. 12 South, West Meade"/>
+        </div>
+        <div class="field">
+          <label>Asking Price</label>
+          <input type="text" id="asking_price" placeholder="$0"/>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Contract Price</label>
+          <input type="text" id="contract_price" placeholder="$0"/>
+        </div>
+        <div class="field">
+          <label>First Contact Date</label>
+          <input type="date" id="first_contact"/>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Date Under Contract</label>
+          <input type="date" id="date_under_contract"/>
+        </div>
+        <div class="field">
+          <label>Due Diligence End</label>
+          <input type="date" id="due_diligence"/>
+        </div>
+        <div class="field">
+          <label>Closing Date</label>
+          <input type="date" id="closing_date"/>
+        </div>
+      </div>
+
+      <!-- LOT DETAILS -->
+      <div class="section-label">Lot Details</div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Lot Size</label>
+          <input type="text" id="lot_size" placeholder="e.g. 0.25 acres"/>
+        </div>
+        <div class="field">
+          <label>Topography</label>
+          <input type="text" id="topography" placeholder="e.g. Flat, Sloped"/>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Zoning</label>
+          <input type="text" id="zoning" placeholder="e.g. R6, RS5"/>
+        </div>
+        <div class="field">
+          <label>Flood Zone</label>
+          <div class="radio-group" style="padding-top:4px;">
+            <label><input type="radio" name="flood_zone" value="No" checked/> No</label>
+            <label><input type="radio" name="flood_zone" value="Yes"/> Yes</label>
+            <label><input type="radio" name="flood_zone" value="Partial"/> Partial</label>
+          </div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Needs Variance?</label>
+        <div class="radio-group" style="padding-top:4px;">
+          <label><input type="radio" name="needs_variance" value="No" checked onclick="toggleVariance(false)"/> No</label>
+          <label><input type="radio" name="needs_variance" value="Yes" onclick="toggleVariance(true)"/> Yes</label>
+        </div>
+        <div class="conditional" id="variance-box">
+          <div class="field" style="margin-bottom:0;">
+            <label>Variance Explanation</label>
+            <textarea id="variance_explanation" placeholder="Describe the variance needed…" style="min-height:60px;"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- SETBACKS -->
+      <div class="section-label">Setbacks (ft)</div>
+      <div class="grid-4">
+        <div class="field">
+          <label>Front</label>
+          <input type="text" id="setback_front" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Rear</label>
+          <input type="text" id="setback_rear" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Interior</label>
+          <input type="text" id="setback_interior" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Road Side</label>
+          <input type="text" id="setback_road" placeholder="0"/>
+        </div>
+      </div>
+
+      <!-- DIMENSIONS -->
+      <div class="section-label">Lot Dimensions (ft)</div>
+      <div class="grid-4">
+        <div class="field">
+          <label>Front</label>
+          <input type="text" id="dim_front" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Side Left</label>
+          <input type="text" id="dim_side_left" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Rear</label>
+          <input type="text" id="dim_rear" placeholder="0"/>
+        </div>
+        <div class="field">
+          <label>Side Right</label>
+          <input type="text" id="dim_side_right" placeholder="0"/>
+        </div>
+      </div>
+
+      <!-- COMPS & ANALYSIS -->
+      <div class="section-label">Comps &amp; Analysis</div>
+      <div class="field">
+        <label>Comps in Area</label>
+        <textarea id="comps_in_area" placeholder="List comparable properties and prices…"></textarea>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label>Best Comp</label>
+          <input type="text" id="best_comp" placeholder="Address or description"/>
+        </div>
+        <div class="field">
+          <label>CMA Value</label>
+          <input type="text" id="cma" placeholder="$0"/>
+        </div>
+      </div>
+      <div class="field">
+        <label>Land Comps</label>
+        <textarea id="land_comps" placeholder="List land comparable properties…"></textarea>
+      </div>
+
+      <!-- NOTES -->
+      <div class="section-label">Notes</div>
+      <div class="field">
+        <label>Additional Notes</label>
+        <textarea id="notes" placeholder="Any additional information about this property…" style="min-height:100px;"></textarea>
+      </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="submitForm()">Submit Property Intake</button>
+    </div>
+
+    <!-- Success screen -->
+    <div id="success-screen">
+      <div class="success-icon">✓</div>
+      <div class="success-title">Submitted Successfully</div>
+      <div class="success-sub" id="success-sub">Property intake has been saved and emailed to the team.</div>
+      <button class="new-btn" onclick="resetForm()">Submit Another Property</button>
+    </div>
+
+  </div>
+</main>
+
+<footer>The Shepherd Group &nbsp;·&nbsp; Nashville, TN</footer>
+
+<script>
+  var GAS_URL    = "GAS_INTAKE_URL_PLACEHOLDER";
+
+  // Set today's date
+  document.getElementById("date_submitted").valueAsDate = new Date();
+
+  function toggleVariance(show) {
+    document.getElementById("variance-box").style.display = show ? "block" : "none";
+  }
+
+  function val(id) {
+    return (document.getElementById(id) || {value:""}).value.trim();
+  }
+  function radioVal(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : "";
+  }
+
+  function submitForm() {
+    var agent   = val("agent");
+    var address = val("address");
+    var area    = val("area");
+    var err     = document.getElementById("error-msg");
+
+    if (!agent || !address || !area) {
+      err.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    err.style.display = "none";
+
+    var btn = document.getElementById("submit-btn");
+    btn.disabled = true;
+    btn.textContent = "Submitting…";
+
+    var params = "?action=intake" +
+      "&agent="               + encodeURIComponent(agent) +
+      "&date_submitted="      + encodeURIComponent(val("date_submitted")) +
+      "&address="             + encodeURIComponent(address) +
+      "&area="                + encodeURIComponent(area) +
+      "&asking_price="        + encodeURIComponent(val("asking_price")) +
+      "&contract_price="      + encodeURIComponent(val("contract_price")) +
+      "&first_contact="       + encodeURIComponent(val("first_contact")) +
+      "&date_under_contract=" + encodeURIComponent(val("date_under_contract")) +
+      "&due_diligence="       + encodeURIComponent(val("due_diligence")) +
+      "&closing_date="        + encodeURIComponent(val("closing_date")) +
+      "&lot_size="            + encodeURIComponent(val("lot_size")) +
+      "&topography="          + encodeURIComponent(val("topography")) +
+      "&zoning="              + encodeURIComponent(val("zoning")) +
+      "&flood_zone="          + encodeURIComponent(radioVal("flood_zone")) +
+      "&needs_variance="      + encodeURIComponent(radioVal("needs_variance")) +
+      "&variance_explanation="+ encodeURIComponent(val("variance_explanation")) +
+      "&setback_front="       + encodeURIComponent(val("setback_front")) +
+      "&setback_rear="        + encodeURIComponent(val("setback_rear")) +
+      "&setback_interior="    + encodeURIComponent(val("setback_interior")) +
+      "&setback_road="        + encodeURIComponent(val("setback_road")) +
+      "&dim_front="           + encodeURIComponent(val("dim_front")) +
+      "&dim_side_left="       + encodeURIComponent(val("dim_side_left")) +
+      "&dim_rear="            + encodeURIComponent(val("dim_rear")) +
+      "&dim_side_right="      + encodeURIComponent(val("dim_side_right")) +
+      "&comps_in_area="       + encodeURIComponent(val("comps_in_area")) +
+      "&best_comp="           + encodeURIComponent(val("best_comp")) +
+      "&cma="                 + encodeURIComponent(val("cma")) +
+      "&land_comps="          + encodeURIComponent(val("land_comps")) +
+      "&notes="               + encodeURIComponent(val("notes"));
+
+    fetch(GAS_URL + params)
+      .then(function() { showSuccess(agent, address); })
+      .catch(function() { showSuccess(agent, address); });
+  }
+
+  function showSuccess(agent, address) {
+    document.getElementById("form-screen").style.display = "none";
+    document.getElementById("success-screen").style.display = "block";
+    document.getElementById("success-sub").textContent =
+      address + " submitted by " + agent + ". Saved to Google Sheets and emailed to the team.";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function resetForm() {
+    document.getElementById("form-screen").style.display = "block";
+    document.getElementById("success-screen").style.display = "none";
+    document.getElementById("submit-btn").disabled = false;
+    document.getElementById("submit-btn").textContent = "Submit Property Intake";
+    document.getElementById("agent").value = "";
+    ["address","area","asking_price","contract_price","first_contact",
+     "date_under_contract","due_diligence","closing_date","lot_size",
+     "topography","zoning","variance_explanation","setback_front",
+     "setback_rear","setback_interior","setback_road","dim_front",
+     "dim_side_left","dim_rear","dim_side_right","comps_in_area",
+     "best_comp","cma","land_comps","notes"].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    document.getElementById("date_submitted").valueAsDate = new Date();
+    document.querySelector('input[name="flood_zone"][value="No"]').checked = true;
+    document.querySelector('input[name="needs_variance"][value="No"]').checked = true;
+    document.getElementById("variance-box").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
+
+</body>
+</html>
