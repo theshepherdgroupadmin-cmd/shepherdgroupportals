@@ -350,22 +350,19 @@
     btn.disabled = true;
     btn.textContent = "Signing in...";
 
-    var body = new URLSearchParams({
-      "action":     "guest",
-      "agentName":  AGENT_NAME,
-      "agentEmail": AGENT_EMAIL,
-      "property":   property,
-      "ohDate":     ohDate,
-      "firstName":  fn,
-      "lastName":   ln,
-      "phone":      phone,
-      "email":      em
-    });
+    var params = "?action=guest" +
+      "&agentName="  + encodeURIComponent(AGENT_NAME) +
+      "&agentEmail=" + encodeURIComponent(AGENT_EMAIL) +
+      "&property="   + encodeURIComponent(property) +
+      "&ohDate="     + encodeURIComponent(ohDate) +
+      "&firstName="  + encodeURIComponent(fn) +
+      "&lastName="   + encodeURIComponent(ln) +
+      "&phone="      + encodeURIComponent(phone) +
+      "&email="      + encodeURIComponent(em);
 
-    fetch(GAS_URL, { method: "POST", body: body, mode: 'no-cors' })
-      .then(function(r) { return r.json(); })
+    fetch(GAS_URL + params)
       .then(function() { signedIn(fn); })
-      .catch(function()  { signedIn(fn); });
+      .catch(function() { signedIn(fn); });
   }
 
   function signedIn(firstName) {
@@ -405,15 +402,13 @@
       listDiv.style.display = "block";
     }
 
-    var endBody = new URLSearchParams({
-      "action":     "end_session",
-      "agentName":  AGENT_NAME,
-      "agentEmail": AGENT_EMAIL,
-      "property":   property,
-      "ohDate":     ohDate,
-      "guestCount": String(guestCount)
-    });
-    fetch(GAS_URL, { method: "POST", body: endBody, mode: 'no-cors' }).catch(function(){});
+    var endParams = "?action=end_session" +
+      "&agentName="  + encodeURIComponent(AGENT_NAME) +
+      "&agentEmail=" + encodeURIComponent(AGENT_EMAIL) +
+      "&property="   + encodeURIComponent(property) +
+      "&ohDate="     + encodeURIComponent(ohDate) +
+      "&guestCount=" + encodeURIComponent(String(guestCount));
+    fetch(GAS_URL + endParams).catch(function(){});
   }
 
   function show(id) {
