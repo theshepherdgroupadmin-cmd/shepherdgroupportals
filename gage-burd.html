@@ -705,7 +705,7 @@
       fetch(url)
         .then(function(r) { return r.json(); })
         .then(function(d) {
-          if (d.submitted \!== undefined) {
+          if (d.submitted !== undefined) {
             var s = document.getElementById("land-submitted");
             if (s) s.textContent = d.submitted;
           }
